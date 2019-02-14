@@ -59,3 +59,37 @@ var model = {
         return true;
     }
 };
+
+
+
+var controller = {
+    guesses: 0,
+
+    processGuesses: function (guess){
+        var location = parseGuess(guess);
+        if(location){
+            
+        }
+    }
+};
+
+
+function parseGuess (guess){
+    var alphabet = ["A", "B", "C", "D", "E", "F", "G"]
+    if(guess === null || guess.length !== 2){
+        alert("OOPS, please enter a letter followerd by a number on the board.");
+    } else{
+        firstChar = guess.charAt(0);
+        var row = alphabet.indexOf(firstChar);
+        var column = guess.charAt(1);
+
+        if (isNaN(row) || isNaN(column)){
+            alert("OOPS, that isnt on the board.");
+        } else if(row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize){
+            alert("OOPS, that;s off the board.")
+        } else {
+            return row + column;
+        }
+    }
+    return null;
+};
