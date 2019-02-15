@@ -57,7 +57,18 @@ var model = {
             }
         }
         return true;
-    }
+    },
+
+    generateShipLocations: function () {
+        var locations;
+        for (var i = 0; i < this.numShips; i++){
+            do {
+                locations = this.generateShip();
+            } while (this.collision(locations));
+            this.ships[i].locations = locations;
+        }
+    },
+    
 };
 
 
@@ -98,6 +109,14 @@ function parseGuess (guess){
     return null;
 };
 
+function handleKeyPress(e){
+    var fireButton = document.getElementById("fireButton");
+    if(e.keyCode === 13) {
+        fireButton.click();
+        return false;
+    }
+}
+
 function handleFireButton(){
     var guessInput = document.getElementById("guessInput");
     var guess = guessInput.value;
@@ -111,6 +130,8 @@ function handleFireButton(){
 function init(){
     var fireButton= document.getElementById("fireButton");
     fireButton.onclick = handleFireButton;
+    var guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
 };
 
 
