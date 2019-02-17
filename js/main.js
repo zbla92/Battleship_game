@@ -68,6 +68,38 @@ var model = {
             this.ships[i].locations = locations;
         }
     },
+
+    generateShip: () => {
+        var direction = Math.floor(Math.random() * 2);
+        var row, col;
+
+        if (direction === 1) {
+            //Generate a strng location for a  horizontal ship
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.randdom() * this.boardsize - this.shipLength)
+        } else {
+            row = Math.floor(Math.random() * this.boardsize - this.shipLength);
+            col = Math.floor(Math.random() * this.boardsize);
+        }
+
+        var newShipLocations = [];
+        for (var i = 0; i < this.shipLength; i++){
+            if (direction === 1) {
+                //Add location to array for  new horizontal ship
+                newShipLocations.push(row+ "" + (col + i));
+            } else {
+                // Add location to array for new vertical ship
+                newShipLocations.push((row + i) + "" + col);
+            }
+        }
+        return newShipLocations;
+    },
+
+    collision: () => {
+        for (var i = 0; i < this.numShips; i++){
+            var 
+        }
+    }
     
 };
 
@@ -115,7 +147,7 @@ function handleKeyPress(e){
         fireButton.click();
         return false;
     }
-}
+};
 
 function handleFireButton(){
     var guessInput = document.getElementById("guessInput");
@@ -124,7 +156,7 @@ function handleFireButton(){
 
     guessInput.value = "";
 
-}
+};
 
 
 function init(){
